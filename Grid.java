@@ -1,28 +1,33 @@
 public class Grid {
-    String[] tiles;
+
+    String[] cells;
     Grid(){
-        this.tiles=new String[]{"1","2","3","4","5","6","7","8","9"};
+        this.cells=new String[]{"1","2","3","4","5","6","7","8","9"};
     }
-    boolean modifyGrid(int location,String update){
-        if((location-1)<0||(location-1)>8) {
-            System.out.println("Enter a valid location");
+
+    boolean modifyGrid(int location,String symbol){
+        if(!checkWhetherAlreadyMarked(location)) {
+            this.cells[location - 1] = symbol;
+            return true;
+        }
+        else{
             return false;
         }
-        else {
-            if(tiles[location-1].equals("X")||tiles[location-1].equals("Y")){
-                System.out.println("Already someone marked IT");
-                return false;
-            }
-            else {
-                this.tiles[location - 1] = update;
-                return true;
-            }
+    }
+
+    boolean checkWhetherAlreadyMarked(int location){
+        if(cells[location-1].equals("X")||cells[location-1].equals("Y")){
+            return true;
+        }
+        else{
+            return false;
         }
     }
-    public void Display(){
-        System.out.println(tiles[0]+" "+tiles[1]+" "+tiles[2]);
-        System.out.println(tiles[3]+" "+tiles[4]+" "+tiles[5]);
-        System.out.println(tiles[6]+" "+tiles[7]+" "+tiles[8]);
+
+    public void display(){
+        System.out.println(cells[0]+" "+cells[1]+" "+cells[2]);
+        System.out.println(cells[3]+" "+cells[4]+" "+cells[5]);
+        System.out.println(cells[6]+" "+cells[7]+" "+cells[8]);
 
     }
 }
