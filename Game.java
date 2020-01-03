@@ -19,14 +19,14 @@ public class Game {
         }
     }
 
-    boolean checkForWinnerHelper(String s){
+    boolean checkForWinnerHelper(String checkingString){
         String winningLiteral1="XXX";
         String winningLiteral2="YYY";
 
-        if(s.equals(winningLiteral1)){
+        if(checkingString.equals(winningLiteral1)){
             return true;
         }
-        else if(s.equals(winningLiteral2)){
+        else if(checkingString.equals(winningLiteral2)){
             return true;
         }
         return false;
@@ -34,7 +34,7 @@ public class Game {
 
 
     boolean checkForWinner(){
-        //Total 8 possibilities
+
         boolean flag;
         String[] cells=grid.getCells();
         flag=checkForWinnerHelper(cells[0]+cells[1]+cells[2])||
@@ -54,8 +54,8 @@ public class Game {
         int totalTurns=9;
             while(totalTurns>=0){
                 grid.display();
-                System.out.println(currentPlayer.name);
-                grid.modifyGrid(currentPlayer.mark(),currentPlayer.symbol);
+                System.out.println(currentPlayer.getName());
+                grid.modifyGrid(currentPlayer.mark(),currentPlayer.getSymbol());
                 changeTurn(currentPlayer);
                 if(checkForWinner())
                     break;
@@ -68,6 +68,6 @@ public class Game {
             else{
                 System.out.println("Winner is "+currentPlayer.name);
             }
-            
+
     }
 }
