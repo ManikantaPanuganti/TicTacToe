@@ -5,7 +5,11 @@ public class Grid {
         this.cells=new String[]{"1","2","3","4","5","6","7","8","9"};
     }
 
-    boolean modifyGrid(int location,String symbol){
+    public String[] getCells() {
+        return cells;
+    }
+
+    boolean modifyGrid(int location, String symbol){
         if(!checkWhetherAlreadyMarked(location)) {
             this.cells[location - 1] = symbol;
             return true;

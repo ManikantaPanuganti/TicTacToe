@@ -36,14 +36,15 @@ public class Game {
     boolean checkForWinner(){
         //Total 8 possibilities
         boolean flag;
-        flag=checkForWinnerHelper(grid.cells[0]+grid.cells[1]+grid.cells[2])||
-                checkForWinnerHelper(grid.cells[3]+grid.cells[4]+grid.cells[5])||
-                checkForWinnerHelper(grid.cells[6]+grid.cells[7]+grid.cells[8])||
-                checkForWinnerHelper(grid.cells[0]+grid.cells[3]+grid.cells[6])||
-                checkForWinnerHelper(grid.cells[1]+grid.cells[4]+grid.cells[7])||
-                checkForWinnerHelper(grid.cells[2]+grid.cells[5]+grid.cells[8])||
-                checkForWinnerHelper(grid.cells[0]+grid.cells[4]+grid.cells[8])||
-                checkForWinnerHelper(grid.cells[2]+grid.cells[4]+grid.cells[6]);
+        String[] cells=grid.getCells();
+        flag=checkForWinnerHelper(cells[0]+cells[1]+cells[2])||
+                checkForWinnerHelper(cells[3]+cells[4]+cells[5])||
+                checkForWinnerHelper(cells[6]+cells[7]+cells[8])||
+                checkForWinnerHelper(cells[0]+cells[3]+cells[6])||
+                checkForWinnerHelper(cells[1]+cells[4]+cells[7])||
+                checkForWinnerHelper(cells[2]+cells[5]+cells[8])||
+                checkForWinnerHelper(cells[0]+cells[4]+cells[8])||
+                checkForWinnerHelper(cells[2]+cells[4]+cells[6]);
         return flag;
     }
 
@@ -67,9 +68,6 @@ public class Game {
             else{
                 System.out.println("Winner is "+currentPlayer.name);
             }
-
-
-
+            
     }
-
 }
