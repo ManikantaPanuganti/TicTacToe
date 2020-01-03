@@ -9,23 +9,19 @@ public class Grid {
         return cells;
     }
 
-    boolean modifyGrid(int location, String symbol){
+    Grid modifyGrid(int location, String symbol){
         if(!checkWhetherAlreadyMarked(location)) {
             this.cells[location - 1] = symbol;
-            return true;
+            return this;
         }
-        else{
-            return false;
-        }
+            return this;
     }
 
     boolean checkWhetherAlreadyMarked(int location){
         if(cells[location-1].equals("X")||cells[location-1].equals("Y")){
             return true;
         }
-        else{
             return false;
-        }
     }
 
     public void display(){

@@ -8,6 +8,14 @@ public class Player {
         this.symbol=symbol;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
     public int mark(){
         Scanner scan=new Scanner(System.in);
         int location=scan.nextInt();
