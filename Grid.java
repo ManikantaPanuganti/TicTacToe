@@ -9,12 +9,17 @@ public class Grid {
         return cells;
     }
 
-    Grid modifyGrid(int location, String symbol){
+    boolean modifyGrid(int location, String symbol){
+        if(location<0 || location>=9){
+            System.out.println("invalid location");
+            return false;
+        }
         if(!checkWhetherAlreadyMarked(location)) {
             this.cells[location - 1] = symbol;
-            return this;
+            return true;
         }
-            return this;
+        System.out.println("location already got marked");
+            return false;
     }
 
     boolean checkWhetherAlreadyMarked(int location){

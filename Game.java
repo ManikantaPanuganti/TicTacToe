@@ -34,7 +34,7 @@ public class Game {
 
 
     boolean checkForWinner(){
-
+    //can change the logic of checkWinner
         boolean flag;
         String[] cells=grid.getCells();
         flag=checkForWinnerHelper(cells[0]+cells[1]+cells[2])||
@@ -52,16 +52,19 @@ public class Game {
     void startGame(){
         Player currentPlayer=player1;
         int totalTurns=9;
-            while(totalTurns>=0){
+            while(totalTurns>0){
                 grid.display();
-                System.out.println(currentPlayer.getName());
-                grid.modifyGrid(currentPlayer.mark(),currentPlayer.getSymbol());
-                changeTurn(currentPlayer);
+                System.out.println(currentPlayer.getName()+"'s turn");
+                if(grid.modifyGrid(currentPlayer.mark(),currentPlayer.getSymbol())) {
+                    changeTurn(currentPlayer);
+                    totalTurns--;
+                }
                 if(checkForWinner())
                     break;
-                totalTurns--;
+
                 currentPlayer=turn;
             }
+            grid.display();
             if(totalTurns==0){
                 System.out.println("Draw");
             }

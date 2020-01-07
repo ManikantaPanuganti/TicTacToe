@@ -18,7 +18,9 @@ public class Player {
 
     public int mark(){
         Scanner scan=new Scanner(System.in);
+        System.out.println("enter a position to mark:");
         int location=scan.nextInt();
+
         return location;
     }
 }
