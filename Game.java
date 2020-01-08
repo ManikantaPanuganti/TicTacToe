@@ -11,7 +11,7 @@ public class Game {
         turn=player1;
     }
 
-    void changeTurn(Player currentPlayer){
+    void changeTurn(){
         if(turn==player1){
             turn=player2;
         }else{
@@ -19,10 +19,23 @@ public class Game {
         }
     }
 
-    boolean checkForWinnerHelper(String checkingString){
+    boolean checkForWinner(){
+    //can change the logic of checkWinner
+        boolean flag;
+        Cell[] cells=grid.getCells();
+        flag=matchingString(cells[0].getSymbol()+cells[1].getSymbol()+cells[2].getSymbol())||
+                matchingString(cells[3].getSymbol()+cells[4].getSymbol()+cells[5].getSymbol())||
+                matchingString(cells[6].getSymbol()+cells[7].getSymbol()+cells[8].getSymbol())||
+                matchingString(cells[0].getSymbol()+cells[3].getSymbol()+cells[6].getSymbol())||
+                matchingString(cells[1].getSymbol()+cells[4].getSymbol()+cells[7].getSymbol())||
+                matchingString(cells[2].getSymbol()+cells[5].getSymbol()+cells[8].getSymbol())||
+                matchingString  (cells[0].getSymbol()+cells[4].getSymbol()+cells[8].getSymbol())||
+                matchingString(cells[2].getSymbol()+cells[4].getSymbol()+cells[6].getSymbol());
+        return flag;
+    }
+    boolean matchingString(String checkingString){
         String winningLiteral1="XXX";
         String winningLiteral2="YYY";
-
         if(checkingString.equals(winningLiteral1)){
             return true;
         }
@@ -32,45 +45,28 @@ public class Game {
         return false;
     }
 
-
-    boolean checkForWinner(){
-    //can change the logic of checkWinner
-        boolean flag;
-        String[] cells=grid.getCells();
-        flag=checkForWinnerHelper(cells[0]+cells[1]+cells[2])||
-                checkForWinnerHelper(cells[3]+cells[4]+cells[5])||
-                checkForWinnerHelper(cells[6]+cells[7]+cells[8])||
-                checkForWinnerHelper(cells[0]+cells[3]+cells[6])||
-                checkForWinnerHelper(cells[1]+cells[4]+cells[7])||
-                checkForWinnerHelper(cells[2]+cells[5]+cells[8])||
-                checkForWinnerHelper(cells[0]+cells[4]+cells[8])||
-                checkForWinnerHelper(cells[2]+cells[4]+cells[6]);
-        return flag;
+    void gameOver(){
+        if(checkForWinner()){
+            System.out.println(turn.getName()+" is the winner");
+        }
+        else{
+            System.out.println("Game is draw!");
+        }
     }
 
-
     void startGame(){
-        Player currentPlayer=player1;
         int totalTurns=9;
             while(totalTurns>0){
                 grid.display();
-                System.out.println(currentPlayer.getName()+"'s turn");
-                if(grid.modifyGrid(currentPlayer.mark(),currentPlayer.getSymbol())) {
-                    changeTurn(currentPlayer);
+                System.out.println(turn.getName()+"'s turn");
+                if(grid.modifyCellsSymbol(turn.markOnTheGrid(),turn.getSymbol())) {
+                    if(checkForWinner())
+                        break;
+                    changeTurn();
                     totalTurns--;
                 }
-                if(checkForWinner())
-                    break;
-
-                currentPlayer=turn;
             }
             grid.display();
-            if(totalTurns==0){
-                System.out.println("Draw");
-            }
-            else{
-                System.out.println("Winner is "+currentPlayer.name);
-            }
-
+            gameOver();
     }
 }

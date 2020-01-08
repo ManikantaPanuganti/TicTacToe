@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 public class Player {
     String name;
     String symbol;
@@ -16,7 +16,7 @@ public class Player {
         return symbol;
     }
 
-    public int mark(){
+    public int markOnTheGrid(){
         Scanner scan=new Scanner(System.in);
         System.out.println("enter a position to mark:");
         int location=scan.nextInt();
