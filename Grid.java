@@ -1,12 +1,13 @@
 public class Grid {
-
     Cell[] cells;
-    Grid(){
-        this.cells=new Cell[9];
-        createCells(9);
+    int gridSize;
+    Grid(int gridSize){
+        this.gridSize=gridSize;
+        this.cells=new Cell[gridSize];
+        createCells();
     }
-    void createCells(int size){
-        for(int iterator=0;iterator<size;iterator++){
+    void createCells(){
+        for(int iterator=0;iterator<gridSize;iterator++){
             cells[iterator]=new Cell(iterator,String.valueOf(iterator));
         }
 
@@ -16,7 +17,7 @@ public class Grid {
     }
 
     boolean modifyCellsSymbol(int location, String symbol){
-        if(location<0 || location>8){
+        if(location<0 || location>gridSize){
             System.out.println("invalid location");
             return false;
         }
@@ -29,7 +30,7 @@ public class Grid {
     }
 
     boolean isAlreadyMarked(int location){
-        return (cells[location].equals("X")||cells[location].equals("Y"));
+        return cells[location].isMarked();
     }
 
     public void display(){
@@ -37,5 +38,13 @@ public class Grid {
         System.out.println(cells[3].getSymbol()+" "+cells[4].getSymbol()+" "+cells[5].getSymbol());
         System.out.println(cells[6].getSymbol()+" "+cells[7].getSymbol()+" "+cells[8].getSymbol());
 
+    }
+    boolean isAllCellsMarked(){
+        for(int i=0;i<gridSize;i++){
+            if(!isAlreadyMarked(i)){
+                return false;
+            }
+        }
+        return true;
     }
 }
