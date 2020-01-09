@@ -33,8 +33,8 @@ public class Game {
             gameOver(turn);
     }
     boolean matchingString(String checkingString){
-        String winningLiteral1="XXX";
-        String winningLiteral2="YYY";
+        String winningLiteral1=player1.getSymbol()+player1.getSymbol()+player1.getSymbol();
+        String winningLiteral2=player2.getSymbol()+player2.getSymbol()+player2.getSymbol();
         return checkingString.equals(winningLiteral1)||checkingString.equals(winningLiteral2);
 
     }
